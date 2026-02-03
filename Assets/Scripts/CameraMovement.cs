@@ -1,12 +1,14 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class CameraMovement : MonoBehaviour
 {
     private InputSystem_Actions myActions;
-    [SerializeField] private float moveSpeed = 10f;
-    private const float edge_threshold = 0.45f;
+    [SerializeField] private float zoomSpeed = 5f;
+    private CinemachineSplineDolly _camera;
 
     private void OnEnable()
     {
@@ -18,31 +20,21 @@ public class CameraMovement : MonoBehaviour
     {
         myActions.Player.Disable();
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        myActions.Player.MouseScroll.performed += MouseScroll;
+        _camera = GetComponent<CinemachineSplineDolly>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void MouseScroll(InputAction.CallbackContext context)
     {
-        Vector2 mousePos = GetMousePosition();
-        Vector2 screenUV = new Vector2(mousePos.x / Screen.width - 0.5f, mousePos.y / Screen.height - 0.5f);
-        
-        Vector3 move = Vector3.zero;
-        if (screenUV.x < -edge_threshold) move.x = -1f;
-        if (screenUV.x > edge_threshold) move.x = 1f;
-        if (screenUV.y < -edge_threshold) move.y = -1f;
-        if (screenUV.y > edge_threshold) move.y = 1f;
-
-        move = Quaternion.Euler(0f, transform.eulerAngles.y, 0f) * move.normalized;
-        transform.Translate(Time.deltaTime * moveSpeed * move, Space.World);
-    }
-
-    private Vector2 GetMousePosition()
-    {
-        return myActions.Player.Mouse.ReadValue<Vector2>();
+        if (context.ReadValue<Vector2>().y > 0)
+        {
+            _camera.CameraPosition += zoomSpeed * Time.deltaTime;
+        }
+        else
+        {
+            _camera.CameraPosition -= zoomSpeed * Time.deltaTime;
+        }
     }
 }
