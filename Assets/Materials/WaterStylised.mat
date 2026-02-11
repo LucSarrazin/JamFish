@@ -116,9 +116,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _Alpha: 0.78
+    - _Alpha: 1
     - _AlphaClip: 0
-    - _AlphaTexture: 0.13
+    - _AlphaTexture: 0.12
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -135,10 +135,10 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 1.19
+    - _FoamAmount: 1.06
     - _FoamCuttOff: 2.84
     - _FoamScale: 2
-    - _FoamSpeed: 0.1
+    - _FoamSpeed: 0.01
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -150,12 +150,13 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RefractionStrenght: 0.03
+    - _RotationScale: 10
     - _Saturation: 0.98
     - _Scale: 0.5
     - _Smoothness: 0.92
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.04
+    - _Speed: 0.005
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
