@@ -30,13 +30,21 @@ public class CursorController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.collider.name);
+            if (hit.collider.CompareTag("Interractions"))
+            {
+                Debug.Log(hit.collider.name);
+                changeCursor(cursorClickedTexture);
+            }
+        }
+        else
+        {
+            changeCursor(cursorTexture);
         }
     }
 
     private void changeCursor(Texture2D cursorType)
     {
         Vector2 hotspot = new Vector2(cursorType.width / 2, cursorType.height / 2);
-        Cursor.SetCursor(cursorTexture, hotspot, CursorMode.Auto);
+        Cursor.SetCursor(cursorType, hotspot, CursorMode.Auto);
     }
 }
