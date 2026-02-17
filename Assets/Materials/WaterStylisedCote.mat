@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterStylised
+  m_Name: WaterStylisedCote
   m_Shader: {fileID: -6465566751694194690, guid: 7f2a540ba1183714dac601215731b33b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -94,7 +94,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: dad3d3df10987ff449fff995aa19f02d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 273206be94e1ed6439cfae057eb95a10, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TranslucentMap:
@@ -116,16 +116,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _Alpha: 1
+    - _Alpha: 0.494
     - _AlphaClip: 0
-    - _AlphaTexture: 0.156
+    - _AlphaTexture: 0.12
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 1.92
+    - _Contrast: 3.64
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -135,8 +135,8 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 2.32
-    - _FoamCuttOff: 1.42
+    - _FoamAmount: 1.06
+    - _FoamCuttOff: 2.4
     - _FoamScale: 20
     - _FoamSpeed: 0.01
     - _GlossMapScale: 0
@@ -152,7 +152,7 @@ Material:
     - _RefractionStrenght: 0.03
     - _RotationScale: 20
     - _Saturation: 0.98
-    - _Scale: 5
+    - _Scale: 4
     - _Smoothness: 0.92
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

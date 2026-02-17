@@ -83,7 +83,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _Alpha: 0.55
+    - _Alpha: 0.474
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -107,15 +107,15 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalStrenght: 2
+    - _NormalStrenght: 5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionStrenght: 0.2
+    - _RefractionStrenght: 0.16
     - _Scale: 0.3
-    - _Smoothness: 0.87
+    - _Smoothness: 0.815
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.04
@@ -128,11 +128,11 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthColor: {r: 0.2078431, g: 0.6076501, b: 1, a: 0.2784314}
+    - _DepthColor: {r: 0.20784304, g: 0.6076501, b: 1, a: 0.22352941}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 0.78301877, g: 0.9367139, b: 1, a: 0.6784314}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SurfaceColor: {r: 0.6172623, g: 0.60691816, b: 1, a: 0.06666667}
+    - _SurfaceColor: {r: 0.60784316, g: 0.6898564, b: 1, a: 0.24313726}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2064644436230020297

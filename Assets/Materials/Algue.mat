@@ -44,9 +44,9 @@ Material:
     m_Floats:
     - _AlphaThreshold: 0.5
     - _Amplitude: 0.004
-    - _HeightVaweFrequency: 2
+    - _HeightVaweFrequency: 1
     - _MaxMask: 0
-    - _MinMask: -0.02
+    - _MinMask: -0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _VaweSpeed: 2
