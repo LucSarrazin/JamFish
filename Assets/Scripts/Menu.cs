@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,7 +13,21 @@ public class Menu : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private GameObject pauseMenu;
-    
+    [SerializeField] private GameObject bubbles;
+    private InputSystem_Actions actions;
+    private bool paused = false;
+
+    private void OnEnable()
+    {
+        actions = new InputSystem_Actions();
+        actions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        actions.Disable();
+    }
+
     // On start if something is found in playerprefs load it
     // otherwise, set the volume for all.
     void Start()
@@ -28,15 +44,38 @@ public class Menu : MonoBehaviour
             SetMusicVolume();
             SetSFXVolume();
         }
+
+        actions.Player.Echap.performed += EchapOnperformed;
     }
-    
+
+    // Pause game during the gameplay
+    private void EchapOnperformed(InputAction.CallbackContext obj)
+    {
+        if (paused == true)
+        {
+            CloseMenu();
+        }
+        else
+        {
+            paused = true;
+            bubbles.SetActive(true);
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    public void CloseMenu()
+    {
+        paused = false;
+        bubbles.SetActive(false);
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     // Wait for ESCAPE pressed for openning pause menu
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     PauseGame();
-        // }
+        
     }
 
     // Set the volume of the music and save in a playerpref
@@ -69,14 +108,7 @@ public class Menu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
     }
-
-    // Pause game during the gameplay
-    public void PauseGame()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
-
+    
     // Quit game from the menu pause
     public void QuitGame()
     {

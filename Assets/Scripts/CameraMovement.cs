@@ -11,8 +11,10 @@ public class CameraMovement : MonoBehaviour
     private CinemachineInputAxisController _cameraController;
     
     [Header("Camera Settings")]
-    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private float zoomSpeed;
     [SerializeField] private float zoomSmooth = 8f;
+    [SerializeField] private float maxZoom;
+    [SerializeField] private float minZoom;
     [SerializeField] private float cameraSpeed;
     public float CameraSpeed
     {
@@ -80,11 +82,11 @@ public class CameraMovement : MonoBehaviour
 
     private void MouseScroll(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<Vector2>().y < 0 && _cameraOrbitalFollow.Radius < 10f)
+        if (context.ReadValue<Vector2>().y < 0 && _cameraOrbitalFollow.Radius < minZoom)
         {
             targetRadius += zoomSpeed * Time.deltaTime;
         }
-        else if (context.ReadValue<Vector2>().y > 0 && _cameraOrbitalFollow.Radius > 6f)
+        else if (context.ReadValue<Vector2>().y > 0 && _cameraOrbitalFollow.Radius > maxZoom)
         {
             targetRadius -= zoomSpeed * Time.deltaTime;
         }

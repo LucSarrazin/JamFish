@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CursorController : MonoBehaviour
@@ -26,6 +27,12 @@ public class CursorController : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Debug.DrawRay(Camera.main.transform.position, mousePosition, Color.red);
         
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            changeCursor(cursorClickedTexture);
+            return;
+        }
+        
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -34,6 +41,10 @@ public class CursorController : MonoBehaviour
             {
                 Debug.Log(hit.collider.name);
                 changeCursor(cursorClickedTexture);
+            }
+            else
+            {
+                changeCursor(cursorTexture);
             }
         }
         else
