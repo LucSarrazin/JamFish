@@ -21,7 +21,6 @@ Material:
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DepthOnly
   - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
@@ -45,18 +44,24 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _CastShadows: 1
-    - _Cull: 2
+    - _Cull: 0
     - _DstBlend: 10
     - _DstBlendAlpha: 10
+    - _Edge_Mask_Distortion: 0
+    - _Edge_Mask_Scale: 100
+    - _Edge_Scroll_Speed: 0.05
+    - _Godrays_height: -0.04
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _Surface: 1
-    - _ZTest: 4
-    - _ZWrite: 0
-    - _ZWriteControl: 0
-    m_Colors: []
+    - _ZTest: 2
+    - _ZWrite: 1
+    - _ZWriteControl: 1
+    m_Colors:
+    - _Color: {r: 0.6412397, g: 1.1709595, b: 1.7207952, a: 0}
+    - _Godrays_Tiling: {r: 7.5, g: 0.18, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2939977076152745557
