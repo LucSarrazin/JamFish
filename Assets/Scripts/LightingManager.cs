@@ -1,6 +1,4 @@
 using UnityEngine;
-//I STOLE THAT CODE !!!!
-
 
 [ExecuteAlways]
 public class LightingManager : MonoBehaviour
@@ -8,6 +6,11 @@ public class LightingManager : MonoBehaviour
     //Scene References
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightingPreset Preset;
+
+    [Header("Skybox Blend")]
+    [SerializeField] private Material SkyboxMaterial;
+    [SerializeField] private string BlendProperty = "_Blend";
+    
     //Variables
     [SerializeField, Range(0, 24)] private float TimeOfDay;
 
@@ -43,6 +46,15 @@ public class LightingManager : MonoBehaviour
             DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
 
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
+        }
+
+        if (SkyboxMaterial != null)
+        {
+            float blend = Mathf.Clamp01(Mathf.Sin(timePercent * Mathf.PI));
+
+            SkyboxMaterial.SetFloat(BlendProperty, blend);
+
+            DynamicGI.UpdateEnvironment();
         }
 
     }
