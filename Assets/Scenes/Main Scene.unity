@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.29213458, g: 0.2372368, b: 0.10783491, a: 1}
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.002
   m_LinearFogStart: 0
   m_LinearFogEnd: 0.01
-  m_AmbientSkyColor: {r: 0.78431267, g: 0.74182874, b: 0.67320096, a: 1}
+  m_AmbientSkyColor: {r: 0.25882354, g: 0.34117648, b: 0.9058824, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -10018,7 +10018,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 0.49999237, g: 0.49999237, b: 0.49999237, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
@@ -10081,7 +10081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980808134}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9961947, z: 0, w: 0.087155804}
+  m_LocalRotation: {x: -0.061628457, y: 0.70441604, z: 0.70441604, w: 0.061628457}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11085,7 +11085,7 @@ MonoBehaviour:
   Preset: {fileID: 11400000, guid: 39bd47d1cdd43824882439a3e1e83f92, type: 2}
   SkyboxMaterial: {fileID: -876546973899608171, guid: 741331f8b3ef9974d985ad0fbeae3327, type: 3}
   BlendProperty: _Blend
-  TimeOfDay: 6
+  TimeOfDay: 0
 --- !u!4 &1078737624
 Transform:
   m_ObjectHideFlags: 0
