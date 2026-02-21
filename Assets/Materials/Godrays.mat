@@ -60,7 +60,7 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 1
     m_Colors:
-    - _Color: {r: 0.6412397, g: 1.1709595, b: 1.7207952, a: 0}
+    - _Color: {r: 0.90684986, g: 1.6559868, b: 2.4335718, a: 0}
     - _Godrays_Tiling: {r: 7.5, g: 0.18, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
