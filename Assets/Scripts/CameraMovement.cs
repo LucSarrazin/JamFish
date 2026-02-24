@@ -16,6 +16,9 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float maxZoom;
     [SerializeField] private float minZoom;
     [SerializeField] private float cameraSpeed;
+    [SerializeField] private bool rightClick = false;
+    [SerializeField] private float horizontalAxis;
+    [SerializeField] private float verticalAxis;
     public float CameraSpeed
     {
         get { return cameraSpeed; }
@@ -43,21 +46,41 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         myActions.Player.MouseScroll.performed += MouseScroll;
+        myActions.Player.MouseScroll.canceled += MouseScrollOncanceled;
+        myActions.Player.RightClick.started += RightClickOnstarted;
+        myActions.Player.RightClick.canceled += RightClickOncanceled;
         _cameraOrbitalFollow = GetComponent<CinemachineOrbitalFollow>();
         _cameraController = GetComponent<CinemachineInputAxisController>();
+        _cameraOrbitalFollow.enabled = false;
 
         targetRadius = _cameraOrbitalFollow.Radius;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    private void MouseScrollOncanceled(InputAction.CallbackContext obj)
+    {
+        _cameraOrbitalFollow.enabled = false;
+    }
+
+    private void RightClickOnstarted(InputAction.CallbackContext obj)
+    {
+        _cameraOrbitalFollow.enabled = true;
+        _cameraOrbitalFollow.HorizontalAxis.Value = horizontalAxis;
+        _cameraOrbitalFollow.VerticalAxis.Value = verticalAxis;
+        rightClick = true;
+    }
+
+    private void RightClickOncanceled(InputAction.CallbackContext obj)
+    {
+        _cameraOrbitalFollow.enabled = false;
+        horizontalAxis = _cameraOrbitalFollow.HorizontalAxis.Value;
+        verticalAxis = _cameraOrbitalFollow.VerticalAxis.Value;
+        rightClick = false;
+    }
+
     private void Update()
     {
-        _cameraOrbitalFollow.Radius = Mathf.SmoothDamp(
-            _cameraOrbitalFollow.Radius,
-            targetRadius,
-            ref zoomVelocity,
-            0.15f
-        );
+        _cameraOrbitalFollow.Radius = Mathf.SmoothDamp(_cameraOrbitalFollow.Radius, targetRadius, ref zoomVelocity, 0.15f);
     }
 
     private void changeSpeed()
@@ -82,6 +105,9 @@ public class CameraMovement : MonoBehaviour
 
     private void MouseScroll(InputAction.CallbackContext context)
     {
+        _cameraOrbitalFollow.HorizontalAxis.Value = horizontalAxis;
+        _cameraOrbitalFollow.VerticalAxis.Value = verticalAxis;
+        _cameraOrbitalFollow.enabled = true;
         if (context.ReadValue<Vector2>().y < 0 && _cameraOrbitalFollow.Radius < minZoom)
         {
             targetRadius += zoomSpeed * Time.deltaTime;
