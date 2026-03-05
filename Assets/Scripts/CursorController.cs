@@ -7,6 +7,7 @@ public class CursorController : MonoBehaviour
     public Texture2D cursorTexture;
     public Texture2D cursorClickedTexture;
 
+    [SerializeField] private LayerMask interactableLayer;
     private Interactable currentInteractable;
 
     private void Awake()
@@ -14,6 +15,7 @@ public class CursorController : MonoBehaviour
         ChangeCursor(cursorTexture);
         Cursor.lockState = CursorLockMode.Confined;
     }
+
 
     void Update()
     {
@@ -26,7 +28,7 @@ public class CursorController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactableLayer))
         {
             Interactable interactable = hit.collider.GetComponentInParent<Interactable>();
 

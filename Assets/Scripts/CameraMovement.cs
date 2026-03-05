@@ -51,7 +51,7 @@ public class CameraMovement : MonoBehaviour
         myActions.Player.RightClick.canceled += RightClickOncanceled;
         _cameraOrbitalFollow = GetComponent<CinemachineOrbitalFollow>();
         _cameraController = GetComponent<CinemachineInputAxisController>();
-        _cameraOrbitalFollow.enabled = false;
+        _cameraController.enabled = false;
 
         targetRadius = _cameraOrbitalFollow.Radius;
         Cursor.lockState = CursorLockMode.Confined;
@@ -59,12 +59,12 @@ public class CameraMovement : MonoBehaviour
 
     private void MouseScrollOncanceled(InputAction.CallbackContext obj)
     {
-        _cameraOrbitalFollow.enabled = false;
+        _cameraController.enabled = false;
     }
 
     private void RightClickOnstarted(InputAction.CallbackContext obj)
     {
-        _cameraOrbitalFollow.enabled = true;
+        _cameraController.enabled  = true;
         _cameraOrbitalFollow.HorizontalAxis.Value = horizontalAxis;
         _cameraOrbitalFollow.VerticalAxis.Value = verticalAxis;
         rightClick = true;
@@ -72,7 +72,7 @@ public class CameraMovement : MonoBehaviour
 
     private void RightClickOncanceled(InputAction.CallbackContext obj)
     {
-        _cameraOrbitalFollow.enabled = false;
+        _cameraController.enabled  = false;
         horizontalAxis = _cameraOrbitalFollow.HorizontalAxis.Value;
         verticalAxis = _cameraOrbitalFollow.VerticalAxis.Value;
         rightClick = false;
@@ -105,9 +105,6 @@ public class CameraMovement : MonoBehaviour
 
     private void MouseScroll(InputAction.CallbackContext context)
     {
-        _cameraOrbitalFollow.HorizontalAxis.Value = horizontalAxis;
-        _cameraOrbitalFollow.VerticalAxis.Value = verticalAxis;
-        _cameraOrbitalFollow.enabled = true;
         if (context.ReadValue<Vector2>().y < 0 && _cameraOrbitalFollow.Radius < minZoom)
         {
             targetRadius += zoomSpeed * Time.deltaTime;

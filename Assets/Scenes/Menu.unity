@@ -966,6 +966,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   cursorTexture: {fileID: 2800000, guid: a9b3933d448dcfb478ea9dfc2d93f7b8, type: 3}
   cursorClickedTexture: {fileID: 2800000, guid: dbafd9c9e5627f84c98a73c18c05523c, type: 3}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &740359286
 Transform:
   m_ObjectHideFlags: 0
@@ -1372,7 +1375,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: fb07440c60004b2469a11142c2e6b207, type: 2}
+  sharedProfile: {fileID: 11400000, guid: d4d1264697cb13f489d09696f0320316, type: 2}
 --- !u!4 &1228831369
 Transform:
   m_ObjectHideFlags: 0
@@ -2299,6 +2302,7 @@ MonoBehaviour:
   musicSlider: {fileID: 2014932547}
   sfxSlider: {fileID: 1423853670}
   pauseMenu: {fileID: 0}
+  bubbles: {fileID: 0}
 --- !u!1 &1560128324
 GameObject:
   m_ObjectHideFlags: 0
