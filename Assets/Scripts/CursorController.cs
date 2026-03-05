@@ -13,7 +13,7 @@ public class CursorController : MonoBehaviour
     private void Awake()
     {
         ChangeCursor(cursorTexture);
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 
@@ -59,7 +59,7 @@ public class CursorController : MonoBehaviour
 
     private void ChangeCursor(Texture2D cursorType)
     {
-        Vector2 hotspot = new Vector2(cursorType.width / 2, cursorType.height / 2);
+        Vector2 hotspot = new Vector2(cursorType.width / 1, cursorType.height / 1);
         Cursor.SetCursor(cursorType, hotspot, CursorMode.Auto);
     }
 }

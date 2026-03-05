@@ -54,7 +54,7 @@ public class CameraMovement : MonoBehaviour
         _cameraController.enabled = false;
 
         targetRadius = _cameraOrbitalFollow.Radius;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void MouseScrollOncanceled(InputAction.CallbackContext obj)
@@ -64,6 +64,7 @@ public class CameraMovement : MonoBehaviour
 
     private void RightClickOnstarted(InputAction.CallbackContext obj)
     {
+        Debug.Log("Clique droit");
         _cameraController.enabled  = true;
         _cameraOrbitalFollow.HorizontalAxis.Value = horizontalAxis;
         _cameraOrbitalFollow.VerticalAxis.Value = verticalAxis;
@@ -72,6 +73,7 @@ public class CameraMovement : MonoBehaviour
 
     private void RightClickOncanceled(InputAction.CallbackContext obj)
     {
+        Debug.Log("Clique droit annuler");
         _cameraController.enabled  = false;
         horizontalAxis = _cameraOrbitalFollow.HorizontalAxis.Value;
         verticalAxis = _cameraOrbitalFollow.VerticalAxis.Value;
@@ -107,10 +109,12 @@ public class CameraMovement : MonoBehaviour
     {
         if (context.ReadValue<Vector2>().y < 0 && _cameraOrbitalFollow.Radius < minZoom)
         {
+            Debug.Log("+Mouse Scroll");
             targetRadius += zoomSpeed * Time.deltaTime;
         }
         else if (context.ReadValue<Vector2>().y > 0 && _cameraOrbitalFollow.Radius > maxZoom)
         {
+            Debug.Log("-Mouse Scroll");
             targetRadius -= zoomSpeed * Time.deltaTime;
         }
     }
