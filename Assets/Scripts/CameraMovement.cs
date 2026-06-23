@@ -51,7 +51,11 @@ public class CameraMovement : MonoBehaviour
         myActions.Player.RightClick.canceled += RightClickOncanceled;
         _cameraOrbitalFollow = GetComponent<CinemachineOrbitalFollow>();
         _cameraController = GetComponent<CinemachineInputAxisController>();
-        _cameraController.enabled = false;
+        #if UNITY_WEBGL
+                _cameraController.enabled = false;
+        #else
+            _cameraController.enabled = false;
+        #endif
 
         targetRadius = _cameraOrbitalFollow.Radius;
         Cursor.lockState = CursorLockMode.None;
@@ -64,7 +68,15 @@ public class CameraMovement : MonoBehaviour
 
     private void RightClickOnstarted(InputAction.CallbackContext obj)
     {
-        Debug.Log("Clique droit");
+        // Debug.Log("Clique droit");
+        // Debug.Log("Right Click Input : " + myActions.Player.RightClick.ReadValue<float>());
+        // Debug.Log("Mouse Position : " + Mouse.current.position.ReadValue());
+        Debug.Log("Value Horizontal Axis : " + _cameraOrbitalFollow.HorizontalAxis.Value);
+        Debug.Log("Value Vertical Axis: " + _cameraOrbitalFollow.VerticalAxis.Value);
+        #if UNITY_WEBGL
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+        #endif 
         _cameraController.enabled  = true;
         _cameraOrbitalFollow.HorizontalAxis.Value = horizontalAxis;
         _cameraOrbitalFollow.VerticalAxis.Value = verticalAxis;
@@ -73,7 +85,11 @@ public class CameraMovement : MonoBehaviour
 
     private void RightClickOncanceled(InputAction.CallbackContext obj)
     {
-        Debug.Log("Clique droit annuler");
+        //Debug.Log("Clique droit annuler");
+        #if UNITY_WEBGL
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        #endif
         _cameraController.enabled  = false;
         horizontalAxis = _cameraOrbitalFollow.HorizontalAxis.Value;
         verticalAxis = _cameraOrbitalFollow.VerticalAxis.Value;
@@ -83,6 +99,29 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         _cameraOrbitalFollow.Radius = Mathf.SmoothDamp(_cameraOrbitalFollow.Radius, targetRadius, ref zoomVelocity, 0.15f);
+
+        #if UNITY_WEBGL
+                    if (rightClick)
+                    {
+                        float mouseX = Input.GetAxis("Mouse X");
+                        float mouseY = Input.GetAxis("Mouse Y");
+
+                        _cameraOrbitalFollow.HorizontalAxis.Value += mouseX * cameraSpeed;
+                        _cameraOrbitalFollow.VerticalAxis.Value -= mouseY * cameraSpeed;
+                    }
+                    
+                    // scroll zoom
+                    float scroll = Input.mouseScrollDelta.y;
+
+                    if (scroll < 0 && _cameraOrbitalFollow.Radius < minZoom)
+                    {
+                        targetRadius += zoomSpeed * Time.deltaTime;
+                    }
+                    else if (scroll > 0 && _cameraOrbitalFollow.Radius > maxZoom)
+                    {
+                        targetRadius -= zoomSpeed * Time.deltaTime;
+                    }
+        #endif
     }
 
     private void changeSpeed()
@@ -109,12 +148,14 @@ public class CameraMovement : MonoBehaviour
     {
         if (context.ReadValue<Vector2>().y < 0 && _cameraOrbitalFollow.Radius < minZoom)
         {
-            Debug.Log("+Mouse Scroll");
+            //Debug.Log("+Mouse Scroll");
+            //Debug.Log("Scroll Input : "+ myActions.Player.MouseScroll.ReadValue<Vector2>());
             targetRadius += zoomSpeed * Time.deltaTime;
         }
         else if (context.ReadValue<Vector2>().y > 0 && _cameraOrbitalFollow.Radius > maxZoom)
         {
-            Debug.Log("-Mouse Scroll");
+            //Debug.Log("-Mouse Scroll");
+            //Debug.Log("Scroll Input : "+ myActions.Player.MouseScroll.ReadValue<Vector2>());
             targetRadius -= zoomSpeed * Time.deltaTime;
         }
     }
